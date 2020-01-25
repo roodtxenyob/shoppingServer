@@ -11,7 +11,13 @@ var morgan_1 = __importDefault(require("morgan"));
 var nunjucks_1 = __importDefault(require("nunjucks"));
 var index_1 = __importDefault(require("./routes/index"));
 var users_1 = __importDefault(require("./routes/users"));
+var session = require('express-session');
 var app = express_1.default();
+app.use(session({
+    secret: 'mySession',
+    resave: false,
+    saveUninitialized: true
+}));
 app.set('view engine', 'html');
 nunjucks_1.default.configure(path_1.default.join(__dirname, 'views'), {
     autoescape: true,

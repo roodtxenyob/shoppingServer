@@ -6,9 +6,14 @@ import logger from 'morgan';
 import nunjucks from 'nunjucks';
 import indexRouter from './routes/index';
 import usersRouter from './routes/users';
-
+let session:any = require('express-session');
 var app = express();
 
+app.use(session({
+  secret: 'mySession',
+  resave: false,
+  saveUninitialized: true
+}));
 app.set('view engine', 'html');
 nunjucks.configure(path.join(__dirname, 'views'), {
   autoescape: true,
